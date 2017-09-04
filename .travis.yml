@@ -1,0 +1,11 @@
+sudo: true
+language: python
+python:
+  - "3.6"
+services:
+  - docker
+before_script:
+  docker login --username $USERNAME --password $PASSWORD
+script:
+  - ./build.sh v$TRAVIS_TAG
+  - ./push_to_docker_hub.sh v$TRAVIS_TAG
